@@ -1,0 +1,10 @@
+@startuml thermostat
+
+[*] --> Idle
+Idle --> Cooling: temperature >= 30
+Idle --> Heating: temperature <= 18
+Cooling --> Idle: temperature < 30
+Heating --> Idle: temperature > 18
+
+@enduml
+
