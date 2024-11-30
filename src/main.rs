@@ -37,6 +37,9 @@ fn main() -> ! {
     let temp_sensor = pins.a0.into_analog_input(&mut adc);
 
     let mut state = State::Idle;
+    heating_led.set_low();
+    cooling_led.set_low();
+    idle_led.set_high();
 
     loop {
         let temperature = read_temperature(&temp_sensor, &mut adc);
@@ -45,24 +48,20 @@ fn main() -> ! {
             (State::Idle, t) if t <= HEATING_THRESHOLD => {
                 idle_led.set_low();
                 heating_led.set_high();
-                cooling_led.set_low();
                 state = State::Heating;
             }
             (State::Idle, t) if t >= COOLING_THRESHOLD => {
                 idle_led.set_low();
-                heating_led.set_low();
                 cooling_led.set_high();
                 state = State::Cooling;
             }
             (State::Heating, t) if t > HEATING_THRESHOLD => {
                 idle_led.set_high();
                 heating_led.set_low();
-                cooling_led.set_low();
                 state = State::Idle;
             }
             (State::Cooling, t) if t < COOLING_THRESHOLD => {
                 idle_led.set_high();
-                heating_led.set_low();
                 cooling_led.set_low();
                 state = State::Idle;
             }
