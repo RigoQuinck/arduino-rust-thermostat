@@ -3,7 +3,34 @@ arduino-rust-thermostat
 
 Rust project for the _Arduino Uno_.
 
-## Build Instructions
+## Requirements
+
+### Rust
+
+#### Linux / MacOs
+Rust install documentation: https://doc.rust-lang.org/book/ch01-01-installation.html
+
+Rust install command
+```bash
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+```
+
+#### Windows
+
+Rust install documentation: https://doc.rust-lang.org/book/ch01-01-installation.html#installing-rustup-on-windows
+
+### C compiler
+
+#### Linux
+gcc is preinstalled or available from package manager
+
+#### MacOs
+if you didn’t do it yet
+```bash
+xcode-select --install
+```
+
+## Build
 1. Install prerequisites as described in the [`avr-hal` README] (`avr-gcc`, `avr-libc`, `avrdude`, [`ravedude`]).
 
 2. Run `cargo build` to build the firmware.
